@@ -37,10 +37,12 @@ export interface HelmChartOptions {
   readonly namespace?: string;
 
   /**
-   * The values to be used by the chart.
+   * The values to be used by the chart. Can be a single dictionary of values, or a list of dictionaries.
+   * They will be passed to helm in the order they are specified and will overlay according to helm
+   * overlay rules.
    * @default - No values are provided to the chart.
    */
-  readonly values?: {[key: string]: any};
+  readonly values?: {[key: string]: any} | {[key: string]: any}[];
 
   /**
    * Whether or not Helm should wait until all Pods, PVCs, Services, and minimum number of Pods of a
